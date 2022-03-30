@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="h-100 text-center d-flex align-items-center justify-content-center flex-column ">
+    <h1 class="display-5 w-100 ">Регистрация успешно завершена</h1>
+    <a href="{% url 'django_registration_disallowed' %}" class="btn btn-link h-2 w-100">Далее <i class="fas fa-arrow-right"></i></a>
+</div>
+
+{% endblock %}

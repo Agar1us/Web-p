@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="row pt-3">
+    <div class="col">
+        <h2>Последние посты пользователя</h2>
+    </div>
+    <div class="col-5">
+        {% if request.user.avatar.image %}
+                        <img src="{{ request.user.avatar.image.url }}"
+                             class="rounded-circle mx-auto d-block" style="width: 172px;height: 172px" alt="">
+                    {% else %}
+                        <img src="{% static 'Default_avatar.png' %}"
+                             class="rounded-circle mx-auto d-block" style="width: 172px;height: 172px" alt="">
+                    {% endif %}
+                    <h2 class="text-center mt-4"> {{ user.username }} <a class="link" href="setting"><i
+                            class="bi bi-pen"></i></a></h2>
+                    <h5 class="text-center mt-2">{{ user.first_name }} {{ user.last_name }}</h5>
+    </div>
+</div>
+{% endblock %}

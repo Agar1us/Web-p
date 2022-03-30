@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="min-height: 100vh;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card mt-5">
+                    <div class="card-body w-100">
+                        <form action="#" method="POST">
+                            {% csrf_token %}
+                            {{form.as_p }}
+                            <button type="submit" class="btn btn-primary float-right btn-block">Зарегистрироваться</button>
+                        </form>
+                        <p class="w-100 text-center pt-5 mb-1">Не в первый раз на Web-p? <a href="{% url 'login' %}">Войти</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

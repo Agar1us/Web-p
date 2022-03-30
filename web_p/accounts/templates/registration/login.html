@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid pt-5">
+    <div class="row justify-content-around">
+        <div class="col-12 col-md-7 col-lg-3">
+            <form class="validate-form" method="post">
+                <p class="w-100 text-center m-0">С возвращением на</p>
+                <h1 class="text-center mt-2">Web-p</h1>
+                {% csrf_token %}
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    {{form.as_p }}
+                </form>
+                <button class="btn btn-primary mt-2 w-100">
+                    Войти
+                </button>
+                <p class="text-center mt-4">Впервые на Web-p? <a
+                    href="{% url 'django_registration_register' %}">Зарегистрироваться</a></p>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
