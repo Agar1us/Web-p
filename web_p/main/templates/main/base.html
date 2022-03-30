@@ -14,23 +14,50 @@
     <title>{% block header_title %}{% endblock %}</title>
 
 </head>
-<body>
-<!-- Контейнер -->
-    <div class="container"> <!-- Ниже хэдер -->
-        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-            <a href="{% url 'home' %}" class="d-flex align-items-center col-md-3 mb-3 mb-md-0 text-dark text-decoration-none">
-                <img src="{% static 'card.jpg' %}" alt="Логотип">
-            </a>
-        </header>
-    </div>
-    {% block content %}{% endblock %}
-    <div class="container"> <!-- Футер -->
-        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-            <div class="col-md-4 d-flex align-items-center">
-                <span class="text-black-50">© РТУ МИРЭА Команда "Взлом жопы"</span>
+<body class="bg-success text-white">
+    <!-- Ниже хэдер -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="" width="30" height="30" alt="">
+                </a>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    {% if user.is_authenticated %}
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Выйти</a>
+                        </li>
+                    </ul>
+                    {% else %}
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Войти</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Регистрация</a>
+                        </li>
+                    </ul>
+                    {% endif %}
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
             </div>
-        </footer>
-    </div>
+        </nav>
+    </header>
+    {% block content %}{% endblock %}
+    <!-- Футер -->
+    <footer class=" p-3 mb-2 fixed-bottom justify-content-between border-top">
+        <div>
+            <span class="text-black-100">© РТУ МИРЭА Команда</span>
+        </div>
+    </footer>
+
     <!-- Ссылка на скрипты -->
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script></body>
