@@ -14,31 +14,31 @@
     <title>{% block header_title %}{% endblock %}</title>
 
 </head>
-<body class="bg-success text-white">
+<body class="bg-success text-white overflow-hidden">
     <!-- Ниже хэдер -->
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <header class="border-bottom border-warning">
+        <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
                     <img src="" width="30" height="30" alt="">
                 </a>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse" id="navbarSupportedContentRow">
                     {% if user.is_authenticated %}
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link" aria-current="page" href="#">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Выйти</a>
+                            <a class="nav-link" aria-current="page" href="#">Выйти</a>
                         </li>
                     </ul>
                     {% else %}
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Войти</a>
+                            <a class="nav-link" aria-current="page" href="#">Войти</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Регистрация</a>
+                            <a class="nav-link" aria-current="page" href="#">Регистрация</a>
                         </li>
                     </ul>
                     {% endif %}
@@ -50,7 +50,27 @@
             </div>
         </nav>
     </header>
-    {% block content %}{% endblock %}
+    <div class="row" style="height: 100vh">
+        <div class="col-2 bg-dark text-white">
+                <ul class="nav flex-column mt-5">
+                    <li class="nav-item p-2">
+                        <a class="nav-link link-danger" href="#">Мой профиль</a>
+                    </li>
+                    <li class="nav-item p-2">
+                        <a class="nav-link link-danger" href="#">Мои проекты</a>
+                    </li>
+                    <li class="nav-item p-2">
+                        <a class="nav-link link-danger" href="#">Мои друзья</a>
+                    </li>
+                    <li class="nav-item p-2">
+                        <a class="nav-link link-danger" href="#">Настройки</a>
+                    </li>
+                </ul>
+        </div>
+        <div class="col-10">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
     <!-- Футер -->
     <footer class=" p-3 mb-2 fixed-bottom justify-content-between border-top">
         <div>
