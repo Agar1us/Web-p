@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'main/base.html' %}
 
 {% block content %}
 <div style="min-height: 100vh;">
@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="card mt-5">
-                    <div class="card-body w-100">
+                    <div class="card-body w-100 ">
                         <form action="#" method="POST">
                             {% csrf_token %}
                             {{form.as_p }}
