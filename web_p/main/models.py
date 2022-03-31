@@ -9,7 +9,6 @@ class Proj(models.Model):
     members = models.ManyToManyField(User, related_name="team", through='MembershipProject', through_fields=('proj', 'user'),)
     date = models.DateTimeField(auto_now_add=True)
 
-
     def __str__(self):
         return self.header
 
@@ -24,17 +23,33 @@ class Task(models.Model):
     def __str__(self):
         return self.header
 
+
+class TaskFile(models.Model):
+    file = models.FileField(upload_to='files/')
+    task = models.ForeignKey(Task, on_delete=models.CASCADE)
+
+
+class InviteProj(models.Model):
+    proj = models.ForeignKey(to=Proj, on_delete=models.CASCADE)
+    from_user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name='p_from_user')
+    to_user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name='p_to_user')
+
+
+class InviteFriend(models.Model):
+    from_user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name='f_from_user')
+    to_user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name='f_to_user')
+
+
+class Friendship(models.Model):
+    current_user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name='user')
+    friend = models.ManyToManyField(to=User, related_name='friend')
+
+
 class MembershipProject(models.Model):
     proj = models.ForeignKey(Proj, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    inviter = models.ForeignKey(User, on_delete=models.CASCADE, related_name="membership_invites",)
 
 
 class MembershipTask(models.Model):
     task = models.ForeignKey(Task, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-
-
-class TaskFile(models.Model):
-    file = models.FileField(upload_to='files/')
-    task = models.ForeignKey(Task, on_delete=models.CASCADE)

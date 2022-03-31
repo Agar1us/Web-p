@@ -14,7 +14,7 @@
     <title>{% block header_title %}{% endblock %}</title>
 
 </head>
-<body class="bg-success text-white overflow-hidden">
+<body class="overflow-hidden bg-success text-white">
     <!-- Ниже хэдер -->
     <header class="border-bottom border-warning">
         <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
@@ -50,6 +50,7 @@
             </div>
         </nav>
     </header>
+    {% if user.is_authenticated %}
     <div class="row" style="height: 100vh">
         <div class="col-2 bg-dark text-white">
                 <ul class="nav flex-column mt-5">
@@ -71,6 +72,7 @@
             {% block content %}{% endblock %}
         </div>
     </div>
+    {% endif %}
     <!-- Футер -->
     <footer class=" p-3 mb-2 fixed-bottom justify-content-between border-top">
         <div>
