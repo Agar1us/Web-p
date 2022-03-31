@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<!--  Обязательные мета-теги  -->
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0"> <!--  user-scalable=no, maximum-scale=1.0, minimum-scale=1.0 пока убрал -->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!--  CSS Bootstrap5 link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<!--  Заголовок страницы  -->
+    <title>{% block header_title %}{% endblock %}</title>
+
+</head>
+<body class="overflow-hidden bg-success text-white">
+    <!-- Ниже хэдер -->
+    <header class="border-bottom border-warning">
+        <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="" width="30" height="30" alt="">
+                </a>
+                <div class="collapse navbar-collapse" id="navbarSupportedContentRow">
+                    {% if user.is_authenticated %}
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">Выйти</a>
+                        </li>
+                    </ul>
+                    {% else %}
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">Войти</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">Регистрация</a>
+                        </li>
+                    </ul>
+                    {% endif %}
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+    {% if user.is_authenticated %}
+    <div class="row" style="height: 100vh">
+        <div class="col-2 bg-dark text-white">
+                <ul class="nav flex-column mt-5">
+                    <li class="nav-item p-2">
+                        <a class="nav-link link-danger" href="#">Мой профиль</a>
+                    </li>
+                    <li class="nav-item p-2">
+                        <a class="nav-link link-danger" href="#">Мои проекты</a>
+                    </li>
+                    <li class="nav-item p-2">
+                        <a class="nav-link link-danger" href="#">Мои друзья</a>
+                    </li>
+                    <li class="nav-item p-2">
+                        <a class="nav-link link-danger" href="#">Настройки</a>
+                    </li>
+                </ul>
+        </div>
+        <div class="col-10">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+    {% endif %}
+    <!-- Футер -->
+    <footer class=" p-3 mb-2 fixed-bottom justify-content-between border-top">
+        <div>
+            <span class="text-black-100">© РТУ МИРЭА Команда</span>
+        </div>
+    </footer>
+
+    <!-- Ссылка на скрипты -->
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script></body>
+</html>

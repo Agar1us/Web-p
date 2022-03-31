@@ -1,0 +1,18 @@
+{% extends 'main/base.html '%}
+{% load static %}
+{% block title %}
+Главная страница
+{% endblock %}
+
+{% block content %}
+    <main>
+        <section class="py-5 container">
+            <div class="row py-lg-6">
+                <form method="post">
+                    {% csrf_token %}
+
+                </form>
+            </div>
+        </section>
+    </main>
+{% endblock %}
