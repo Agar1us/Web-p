@@ -2,9 +2,9 @@ from django.contrib.auth.models import User
 from django.db import models
 
 
-class Proj(models.Model):
+class Project(models.Model):
     header = models.CharField(max_length=100)
-    decription = models.TextField()
+    description = models.TextField()
     creator = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="creator")
     members = models.ManyToManyField(User, related_name="team", through='MembershipProject', through_fields=('proj', 'user'),)
     date = models.DateTimeField(auto_now_add=True)
@@ -18,7 +18,8 @@ class Task(models.Model):
     description = models.TextField()
     members = models.ManyToManyField(User, through='MembershipTask', through_fields=('task', 'user'), )
     date = models.DateTimeField(auto_now_add=True)
-    proj = models.ForeignKey(to=Proj, on_delete=models.CASCADE)
+    deadline = models.DateTimeField()
+    proj = models.ForeignKey(to=Project, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.header
@@ -30,13 +31,13 @@ class TaskFile(models.Model):
 
 
 class InviteProj(models.Model):
-    proj = models.ForeignKey(to=Proj, on_delete=models.CASCADE)
+    proj = models.ForeignKey(to=Project, on_delete=models.CASCADE)
     from_user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name='p_from_user')
     to_user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name='p_to_user')
 
 
 class MembershipProject(models.Model):
-    proj = models.ForeignKey(Proj, on_delete=models.CASCADE)
+    proj = models.ForeignKey(Project, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 

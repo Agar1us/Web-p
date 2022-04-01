@@ -1,0 +1,22 @@
+{% extends 'main/base.html '%}
+{% load static %}
+{% block title %}
+Мои проекты
+{% endblock %}
+
+{% block content %}
+    <main>
+        <section class="py-5 container">
+            <div>
+                {% if my_proj %}
+                    {% for proj in my_proj %}
+                        <a class="nav-link link-danger" href="{% url 'my_project' proj.id %}">{{proj.header}}</a>
+                    {% endfor %}
+                {% else %}
+                    <p>Вы пока не состоите не в одном проекте. Вы можете создать свой проект нажав на конпку</p>
+                {% endif %}
+                    <a class="nav-link link-danger" href="{% url 'my_projects_create' %}">Добавить проект</a>
+            </div>
+        </section>
+    </main>
+{% endblock %}
