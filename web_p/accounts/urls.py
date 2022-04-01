@@ -5,7 +5,7 @@ from django.views.generic import TemplateView
 from django_registration.backends.one_step.views import RegistrationView
 
 urlpatterns = [
-    path('profile/<int:id>', views.profile_page, name='profile'),
+    path('profile/', views.profile_page, name='profile'),
     path('setting/', views.ProfileSettingView.as_view(), name='setting'),
     path('login/', auth_views.LoginView.as_view(extra_context={'pagename': 'Авторизация'}), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),

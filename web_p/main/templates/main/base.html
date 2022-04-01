@@ -57,7 +57,7 @@
     <div class="col-2 bg-dark">
         <ul class="nav flex-column mt-5">
             <li class="nav-item p-2">
-                <a class="nav-link link-danger" href="{% url 'profile' user.id %}">Мой профиль</a>
+                <a class="nav-link link-danger" href="{% url 'profile' %}">Мой профиль</a>
             </li>
             <li class="nav-item p-2">
                 <a class="nav-link link-danger" href="#">Мои проекты</a>
@@ -66,7 +66,7 @@
                 <a class="nav-link link-danger" href="#">Мои друзья</a>
             </li>
             <li class="nav-item p-2">
-                <a class="nav-link link-danger" href="#">Мои приглашения</a>
+                <a class="nav-link link-danger" href="{% url 'list_invitation' %}">Мои приглашения</a>
             </li>
             <li class="nav-item p-2">
                 <a class="nav-link link-danger" href="{% url 'setting' %}">Настройки</a>

@@ -1,0 +1,43 @@
+{% extends 'main/base.html '%}
+{% load static %}
+{% block title %}
+Список приглашений
+{% endblock %}
+
+{% block content %}
+    <main>
+        <section class="py-5 container">
+            <div class="row py-lg-6">
+                <div class="col-md-6 p-2 py-5 offset-md-3 border border-2 rounded shadow-sm" style="background-color:#63b55d">
+                    {% if object_list %}
+                        <form method="post">
+                            {% csrf_token %}
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                  <th scope="col">ID</th>
+                                  <th scope="col">Действия</th>
+                                </tr>
+                              </thead>
+                                <tbody>
+                                    {% for el in object_list %}
+                                        <tr>
+                                            <td class="table-light align-middle">Пользователь {{el.from_user.username}} приглашает принять участие в разработке "{{el.proj.header}}"</td>
+                                            <td class="table-light align-middle"><a class="nav-link link-danger" href="{% url 'accept_invitation' el.id %}">Принять</a>
+                                            <td class="table-light align-middle"><a class="nav-link link-danger" href="{% url 'delete_invitation' el.id %}">Отказаться</a>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </form>
+                    {% else %}
+                            <p>Нет приглашений</p>
+                    {% endif %}
+                </div>
+                <p class="py-4">
+                    <a href="{% url 'home' %}" class="btn btn-outline-secondary my-2">На главную</a>
+                </p>
+            </div>
+        </section>
+    </main>
+{% endblock %}

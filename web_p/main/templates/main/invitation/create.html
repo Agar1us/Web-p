@@ -1,0 +1,27 @@
+{% extends 'main/base.html '%}
+{% block title %}
+Создание приглашения
+{% endblock %}
+
+{% block content %}
+<main>
+    <section class="py-5 container">
+        <div class="row py-lg-6">
+            <form enctype="multipart/form-data" method="post">
+                {% csrf_token %}
+                <div class="container py-lg-3">
+                    <div class="col-md-6 p-2 py-4 offset-md-3 border border-2 rounded shadow-sm row justify-content-center"  style="background-color:#63b55d">
+                        <div class="col-md-8">
+                            <div class="form-group m-2">
+                                <label>Выберите пользователя:</label>
+                                {{ form.to_user }}
+                            </div>
+                            <button class="btn btn-primary my-3" type="sumbit">Отправить приглашение</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
+{% endblock %}

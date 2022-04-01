@@ -35,16 +35,6 @@ class InviteProj(models.Model):
     to_user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name='p_to_user')
 
 
-class InviteFriend(models.Model):
-    from_user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name='f_from_user')
-    to_user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name='f_to_user')
-
-
-class Friendship(models.Model):
-    current_user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name='user')
-    friend = models.ManyToManyField(to=User, related_name='friend')
-
-
 class MembershipProject(models.Model):
     proj = models.ForeignKey(Proj, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)

@@ -50,7 +50,7 @@ class ProfileSettingView(View):
         return redirect(reverse('setting'))
 
 
-def profile_page(request, id):
+def profile_page(request):
     context = {
         'pagename': 'Профиль',
     }
