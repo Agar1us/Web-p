@@ -13,9 +13,12 @@
                 {% for task in tasks %}
                     <a href="{% url 'task' task.id%}">{{task.header}}</a>
                 {% endfor %}
-                <a class="nav-link link-danger" href="{% url 'my_project_update' proj.id %}">Редактировать проект</a>
-                <a class="nav-link link-danger" href="{% url 'my_project_delete' proj.id %}">Удалить проект</a>
-                <a class="nav-link link-danger" href="{% url 'task_create' proj.id %}">Добавить задачу</a>
+                {% if proj.creator == user %}
+                    <a class="nav-link link-danger" href="{% url 'my_project_update' proj.id %}">Редактировать проект</a>
+                    <a class="nav-link link-danger" href="{% url 'my_project_delete' proj.id %}">Удалить проект</a>
+                    <a class="nav-link link-danger" href="{% url 'task_create' proj.id %}">Добавить задачу</a>
+                    <a class="nav-link link-danger" href="{% url 'create_invention' proj.id %}">Добавить людей </a>
+                {% endif %}
             </div>
         </section>
     </main>

@@ -16,7 +16,7 @@ class HomeView(View):
 
 class ProjView(View):
     def get(self, request):
-        my_proj = Project.objects.filter(creator=request.user)
+        my_proj = Project.objects.filter(members=request.user)
         return render(request, 'main/my_projects.html', {'my_proj': my_proj})
 
 
@@ -29,6 +29,8 @@ class CreateProj(CreateView):
         self.object = form.save(commit=False)
         self.object.creator = self.request.user
         self.object = form.save()
+        member = MembershipProject(proj=self.object, user=self.request.user)
+        member.save()
         return redirect('my_projects')
 
 

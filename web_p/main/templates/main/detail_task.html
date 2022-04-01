@@ -16,9 +16,10 @@
                 {% for el in taskfiles %}
                     <a href="{{el.file.url}}" download>{{el.file}}</a>
                 {% endfor %}
-
-                <a class="nav-link link-danger" href="{% url 'task_update' task.id %}">Редактировать задачу</a>
-                <a class="nav-link link-danger" href="{% url 'task_delete' task.id %}">Удалить задачу</a>
+                {% if task.proj.creator == user %}
+                    <a class="nav-link link-danger" href="{% url 'task_update' task.id %}">Редактировать задачу</a>
+                    <a class="nav-link link-danger" href="{% url 'task_delete' task.id %}">Удалить задачу</a>
+                {% endif %}
                 <form enctype="multipart/form-data" method="post">
                     {% csrf_token %}
                     {{ form }}
