@@ -32,7 +32,6 @@ class CreateProj(CreateView):
         return redirect('my_projects')
 
 
-
 class CreateTask(CreateView):
     model = Task
     form_class = TaskForm
