@@ -1,0 +1,22 @@
+{% extends 'main/base.html '%}
+{% load static %}
+{% block title %}
+Главная страница
+{% endblock %}
+
+{% block content %}
+    <main>
+        <section class="py-5 container">
+            <div class="row py-lg-6">
+                {{ proj.header }}
+                {{ proj.description }}
+                {% for task in tasks %}
+                    <a href="{% url 'task' task.id%}">{{task.header}}</a>
+                {% endfor %}
+                <a class="nav-link link-danger" href="{% url 'my_project_update' proj.id %}">Редактировать проект</a>
+                <a class="nav-link link-danger" href="{% url 'my_project_delete' proj.id %}">Удалить проект</a>
+                <a class="nav-link link-danger" href="{% url 'task_create' proj.id %}">Добавить задачу</a>
+            </div>
+        </section>
+    </main>
+{% endblock %}

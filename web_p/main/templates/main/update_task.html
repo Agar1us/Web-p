@@ -1,0 +1,19 @@
+{% extends 'main/base.html '%}
+{% load static %}
+{% block title %}
+Главная страница
+{% endblock %}
+
+{% block content %}
+    <main>
+        <section class="py-5 container">
+            <div class="row py-lg-6">
+                <form enctype="multipart/form-data" method="post">
+                    {% csrf_token %}
+                    {{ form }}
+                    <button class="btn btn-primary my-3" type="sumbit">Редактировать задачу</button>
+                </form>
+            </div>
+        </section>
+    </main>
+{% endblock %}

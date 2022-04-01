@@ -1,0 +1,31 @@
+{% extends 'main/base.html '%}
+{% load static %}
+{% block title %}
+Главная страница
+{% endblock %}
+
+{% block content %}
+    <main>
+        <section class="py-5 container">
+            <div class="row py-lg-6">
+                {{ task.header }}
+                {{ task.description }}
+                {% for member in members %}
+                    <p>{{member}}</p>
+                {% endfor %}
+                {% for el in taskfiles %}
+                    <a href="{{el.file.url}}" download>{{el.file}}</a>
+                {% endfor %}
+
+                <a class="nav-link link-danger" href="{% url 'task_update' task.id %}">Редактировать задачу</a>
+                <a class="nav-link link-danger" href="{% url 'task_delete' task.id %}">Удалить задачу</a>
+                <form enctype="multipart/form-data" method="post">
+                    {% csrf_token %}
+                    {{ form }}
+                    <button class="btn btn-primary my-3" type="sumbit">Прикрепить файл</button>
+                </form>
+
+            </div>
+        </section>
+    </main>
+{% endblock %}
