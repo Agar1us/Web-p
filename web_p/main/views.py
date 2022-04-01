@@ -152,7 +152,7 @@ class CreateInvitation(CreateView):
     def form_valid(self, form):
         self.object = form.save(commit=False)
         self.object.from_user = self.request.user
-        self.object.proj = Proj.objects.filter(id=self.kwargs['id']).last()
+        self.object.proj = Project.objects.filter(id=self.kwargs['id']).last()
         self.object.save()
         return redirect('home')
 
